@@ -18,8 +18,8 @@ public class BackgroundChanger extends SubsystemBase {
         return runOnce(() -> { 
         try {
             BufferedImage image = new Robot().createScreenCapture(new Rectangle(Toolkit.getDefaultToolkit().getScreenSize()));
-            ImageIO.write(image, "png", new File("C:\\Users\\aidan\\Downloads\\e\\screenshot.png"));
-            ImageIO.write(image, "png", new File("C:\\Users\\aidan\\Downloads\\e\\screenshot2.png"));
+            ImageIO.write(image, "png", new File("C:\\path"));
+            ImageIO.write(image, "png", new File("C:\\path"));
         } catch (Exception e) {
             System.err.println("Failed to save screenshot L");
         }
