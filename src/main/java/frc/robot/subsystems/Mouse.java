@@ -1,12 +1,10 @@
 package frc.robot.subsystems;
 
-import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.wpilibj2.command.Command;
-import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import java.awt.Robot;
 import java.awt.Toolkit;
-import java.awt.event.InputEvent;
+import java.awt.event.KeyEvent;
 
 public class Mouse extends SubsystemBase {
     
@@ -27,9 +25,13 @@ public class Mouse extends SubsystemBase {
 
     public Command minimize() {
         return runOnce(() -> {
-            m_robot.mouseMove(getMinimizeLocation(), 0);
-            m_robot.mousePress(InputEvent.BUTTON1_DOWN_MASK);
-            m_robot.mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
+            m_robot.keyPress(KeyEvent.VK_WINDOWS);
+            m_robot.keyPress(KeyEvent.VK_M);
+            m_robot.keyRelease(KeyEvent.VK_WINDOWS);
+            m_robot.keyRelease(KeyEvent.VK_M);
+            // m_robot.mouseMove(getMinimizeLocation(), 0);
+            // m_robot.mousePress(InputEvent.BUTTON1_DOWN_MASK);
+            // m_robot.mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
         });
     }
 

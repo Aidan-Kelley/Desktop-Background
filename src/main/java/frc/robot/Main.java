@@ -4,8 +4,6 @@
 
 package frc.robot;
 
-import java.time.LocalTime;
-
 import edu.wpi.first.wpilibj.RobotBase;
 
 public final class Main {

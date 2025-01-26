@@ -9,12 +9,15 @@ import java.time.LocalTime;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
+import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
+import frc.robot.subsystems.BackgroundChanger;
 import frc.robot.subsystems.Mouse;
 
 public class RobotContainer {
 
   private Mouse m_mouse = new Mouse();
+  private BackgroundChanger m_backgroundChanger = new BackgroundChanger();
 
   public RobotContainer() {
     configureBindings();
@@ -23,7 +26,10 @@ public class RobotContainer {
   private void configureBindings() {
     Trigger trigger = new Trigger(this::timesUp);
 
-    trigger.onTrue(m_mouse.minimize());
+    trigger.onTrue(Commands.sequence(
+      m_backgroundChanger.takeAScreenShot(),
+      m_mouse.minimize()
+    ));
   }
 
   public Command getAutonomousCommand() {
@@ -31,6 +37,6 @@ public class RobotContainer {
   }
 
   private boolean timesUp() {
-    return LocalTime.now().getMinute() % 2 == 0;
+    return LocalTime.now().getMinute() % 15 == 0 && LocalTime.now().getSecond() == 59;
   }
 }
